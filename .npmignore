@@ -1,0 +1,10 @@
+/node_modules
+
+# Intellij
+.idea
+*.iml
+*.ipr
+*.tgz
+# debug
+yarn-debug.log*
+yarn-error.log

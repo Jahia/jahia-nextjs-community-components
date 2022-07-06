@@ -1,0 +1,13 @@
+/node_modules
+
+# Intellij
+.idea
+*.iml
+*.ipr
+
+/dist
+
+# debug
+yarn-debug.log*
+yarn-error.log
+/jahia-nextjs-lib-v1.0.0.tgz
