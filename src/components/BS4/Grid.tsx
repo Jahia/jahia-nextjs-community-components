@@ -1,15 +1,16 @@
 import React, {useContext} from 'react';
 import {JahiaCtx, MainResourceCtx, ComponentPropsType} from '@jahia/nextjs-sdk';
 import {useQuery} from '@apollo/client';
-import * as PropTypes from 'prop-types';
 import {queryGrid} from './gqlQuery';
+import {
+    BS4Section as Section,
+    BS4Container as Container,
+    BS4Row as Row
+} from './components';
 
-import Section from './components/Section';
-import Container from './components/Container';
-import Row from './components/Row';
 
 
-function BS4Grid({id}: ComponentPropsType) {
+export const BS4Grid = ({id}: ComponentPropsType) => {
     const {workspace, locale} = useContext(JahiaCtx);
     const mainResourcePath = React.useContext(MainResourceCtx);
 
@@ -39,18 +40,10 @@ function BS4Grid({id}: ComponentPropsType) {
     const mixins = grid.mixinTypes?.map((mixin: { name: string; }) => mixin.name) || [];
 
     return (
-        <>
-            <Section grid={grid} mixins={mixins}>
-                <Container grid={grid} mixins={mixins}>
-                    <Row grid={grid} mixins={mixins}/>
-                </Container>
-            </Section>
-        </>
+        <Section grid={grid} mixins={mixins}>
+            <Container grid={grid} mixins={mixins}>
+                <Row grid={grid} mixins={mixins}/>
+            </Container>
+        </Section>
     );
 }
-
-BS4Grid.propTypes = {
-    id: PropTypes.string.isRequired,
-};
-
-export default BS4Grid;

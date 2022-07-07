@@ -1,11 +1,10 @@
 import React from 'react';
-import * as PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import {BS4ContentTypesEnum as BS4,BS4PropsType,ContainerPropsType} from '../types';
 
-function BS4Container({grid, mixins, children} : BS4PropsType) {
+export const BS4Container = ({grid, mixins, children} : BS4PropsType) => {
     if (!mixins.includes(BS4.createContainer)) {
-        return children;
+        return <>children</>;
     }
 
     const containerProps : ContainerPropsType = {};
@@ -41,11 +40,3 @@ function BS4Container({grid, mixins, children} : BS4PropsType) {
         </Container>
     );
 }
-
-BS4Container.propTypes = {
-    grid: PropTypes.object.isRequired,
-    mixins: PropTypes.array,
-    children: PropTypes.node,
-};
-
-export default BS4Container;

@@ -1,10 +1,9 @@
 import React from 'react';
-import * as PropTypes from 'prop-types';
 import {BS4ContentTypesEnum as BS4,BS4PropsType,SectionPropsType} from '../types';
 
-function BS4Section({grid, mixins, children} : BS4PropsType) {
+export const BS4Section = ({grid, mixins, children} : BS4PropsType) => {
     if (!mixins.includes(BS4.createSection) || !grid.sectionElement?.value) {
-        return children;
+        return <>children</>;
     }
 
     const sectionProps : SectionPropsType = {};
@@ -34,11 +33,3 @@ function BS4Section({grid, mixins, children} : BS4PropsType) {
 
     return React.createElement(grid.sectionElement.value, sectionProps, children);
 }
-
-BS4Section.propTypes = {
-    grid: PropTypes.object.isRequired,
-    mixins: PropTypes.array,
-    children: PropTypes.node,
-};
-
-export default BS4Section;

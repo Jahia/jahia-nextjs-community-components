@@ -1,5 +1,4 @@
 import React from 'react';
-import * as PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {
@@ -12,7 +11,7 @@ import {
 } from '../types';
 import {JahiaComponent} from '@jahia/nextjs-sdk';
 
-function BS4Row({grid, mixins, children} : BS4PropsType) {
+export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
     const renderComponent = (node : RowNodeType) => (
         <JahiaComponent
             key={node.uuid}
@@ -104,11 +103,3 @@ function BS4Row({grid, mixins, children} : BS4PropsType) {
 
     return getGrid();
 }
-
-BS4Row.propTypes = {
-    grid: PropTypes.object.isRequired,
-    mixins: PropTypes.array,
-    children: PropTypes.node,
-};
-
-export default BS4Row;
