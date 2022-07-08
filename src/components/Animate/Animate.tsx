@@ -1,7 +1,7 @@
 import React from "react";
 import {JahiaCtx} from "@jahia/nextjs-sdk";
 // import 'animate.css/animate.css';
-import 'animate.css';
+// import 'animate.css';
 import {AnimatePropsType} from './types';
 import { Waypoint } from 'react-waypoint';
 
@@ -10,15 +10,20 @@ export const Animate = ({properties, component, offset, children, className, ...
     const cmp = React.useRef(null);
     const Component = component || 'div';
     const style = isEditMode?{}:{opacity: 0};
+    console.log("[Animate] properties: ",properties);
 
     if(!(properties['j:animation']))
         return (<Component {...props}>{children}</Component>);
 
     const handleWaypointEnter = () =>{
+        console.log("[handleWaypointEnter] start");
         const element = cmp.current;
+        console.log("[handleWaypointEnter] element: ",element);
+
+
         if (!element.className.includes('animate__animated')) {
             const run = () => {
-                element.style.setProperty('opacity', 1);
+                element.style.setProperty('opacity', '1');
                 element.classList.add(`animate__${properties['j:animation']}`, 'animate__animated');
             }
 
@@ -42,9 +47,11 @@ export const Animate = ({properties, component, offset, children, className, ...
         }
     }
     return (
-        <Waypoint
-            onEnter={handleWaypointEnter}
-            topOffset={offset || "95%"}>
+        <>
+            <Waypoint
+                onEnter={() => handleWaypointEnter()}
+                topOffset={offset || "95%"}/>
+
             <Component
                 ref={cmp}
                 style={style}
@@ -53,6 +60,8 @@ export const Animate = ({properties, component, offset, children, className, ...
             >
                 {children}
             </Component>
-        </Waypoint>
+
+        </>
+
     )
 }
