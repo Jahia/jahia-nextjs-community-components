@@ -11,21 +11,22 @@ import {
 } from '../types';
 import {JahiaComponent} from '@jahia/nextjs-sdk';
 
+const renderComponent = (node : RowNodeType) => (
+    <JahiaComponent
+        key={node.uuid}
+        node={node}
+        tagProps={{
+            type: 'area',
+            nodetypes: node.nodetypes?.values || ['jmix:droppableContent'],
+            listlimit: node.listlimit?.value,
+            // Note : get this dynamically
+            referencetypes: ['jnt:fileReference[jnt:file]', 'jnt:fileI18nReference[jnt:file]', 'jnt:contentReference[jmix:droppableContent]', 'jnt:contentFolderReference[jnt:contentFolder]', 'jnt:portletReference[jnt:portlet]', 'jnt:imageReferenceLink[jmix:image]', 'jnt:imageReference[jmix:image]', 'jnt:nodeLinkImageReference[jmix:image]', 'jnt:nodeLinkI18nImageReference[jmix:image]', 'jnt:externalLinkImageReference[jmix:image]', 'jnt:externalLinkI18nImageReference[jmix:image]', 'jnt:imageI18nReference[jmix:image]'],
+            allowreferences: true,
+        }}
+    />
+);
+
 export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
-    const renderComponent = (node : RowNodeType) => (
-        <JahiaComponent
-            key={node.uuid}
-            node={node}
-            tagProps={{
-                type: 'area',
-                nodetypes: node.nodetypes?.values || ['jmix:droppableContent'],
-                listlimit: node.listlimit?.value,
-                // Note : get this dynamically
-                referencetypes: ['jnt:fileReference[jnt:file]', 'jnt:fileI18nReference[jnt:file]', 'jnt:contentReference[jmix:droppableContent]', 'jnt:contentFolderReference[jnt:contentFolder]', 'jnt:portletReference[jnt:portlet]', 'jnt:imageReferenceLink[jmix:image]', 'jnt:imageReference[jmix:image]', 'jnt:nodeLinkImageReference[jmix:image]', 'jnt:nodeLinkI18nImageReference[jmix:image]', 'jnt:externalLinkImageReference[jmix:image]', 'jnt:externalLinkI18nImageReference[jmix:image]', 'jnt:imageI18nReference[jmix:image]'],
-                allowreferences: true,
-            }}
-        />
-    );
 
     if (!mixins.includes(BS4.createRow)) {
         if (children) {

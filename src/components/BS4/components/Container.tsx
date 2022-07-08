@@ -4,7 +4,7 @@ import {BS4ContentTypesEnum as BS4,BS4PropsType,ContainerPropsType} from '../typ
 
 export const BS4Container = ({grid, mixins, children} : BS4PropsType) => {
     if (!mixins.includes(BS4.createContainer)) {
-        return <>children</>;
+        return <>{children}</>;
     }
 
     const containerProps : ContainerPropsType = {};

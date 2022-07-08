@@ -3,7 +3,7 @@ import {BS4ContentTypesEnum as BS4,BS4PropsType,SectionPropsType} from '../types
 
 export const BS4Section = ({grid, mixins, children} : BS4PropsType) => {
     if (!mixins.includes(BS4.createSection) || !grid.sectionElement?.value) {
-        return <>children</>;
+        return <>{children}</>;
     }
 
     const sectionProps : SectionPropsType = {};
