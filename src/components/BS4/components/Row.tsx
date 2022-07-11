@@ -9,22 +9,22 @@ import {
     RowColsType,
     BreakpointType
 } from '../types';
-import {JahiaComponent} from '@jahia/nextjs-sdk';
-
-const renderComponent = (node : RowNodeType) => (
-    <JahiaComponent
-        key={node.uuid}
-        node={node}
-        tagProps={{
-            type: 'area',
-            nodetypes: node.nodetypes?.values || ['jmix:droppableContent'],
-            listlimit: node.listlimit?.value,
-            // Note : get this dynamically
-            referencetypes: ['jnt:fileReference[jnt:file]', 'jnt:fileI18nReference[jnt:file]', 'jnt:contentReference[jmix:droppableContent]', 'jnt:contentFolderReference[jnt:contentFolder]', 'jnt:portletReference[jnt:portlet]', 'jnt:imageReferenceLink[jmix:image]', 'jnt:imageReference[jmix:image]', 'jnt:nodeLinkImageReference[jmix:image]', 'jnt:nodeLinkI18nImageReference[jmix:image]', 'jnt:externalLinkImageReference[jmix:image]', 'jnt:externalLinkI18nImageReference[jmix:image]', 'jnt:imageI18nReference[jmix:image]'],
-            allowreferences: true,
-        }}
-    />
-);
+// import {JahiaComponent} from '@jahia/nextjs-sdk';
+import {Area} from '@jahia/nextjs-sdk';
+// const renderComponent = (node : RowNodeType) => (
+//     <JahiaComponent
+//         key={node.uuid}
+//         node={node}
+//         tagProps={{
+//             type: 'area',
+//             nodetypes: node.nodetypes?.values || ['jmix:droppableContent'],
+//             listlimit: node.listlimit?.value,
+//             // Note : get this dynamically
+//             referencetypes: ['jnt:fileReference[jnt:file]', 'jnt:fileI18nReference[jnt:file]', 'jnt:contentReference[jmix:droppableContent]', 'jnt:contentFolderReference[jnt:contentFolder]', 'jnt:portletReference[jnt:portlet]', 'jnt:imageReferenceLink[jmix:image]', 'jnt:imageReference[jmix:image]', 'jnt:nodeLinkImageReference[jmix:image]', 'jnt:nodeLinkI18nImageReference[jmix:image]', 'jnt:externalLinkImageReference[jmix:image]', 'jnt:externalLinkI18nImageReference[jmix:image]', 'jnt:imageI18nReference[jmix:image]'],
+//             allowreferences: true,
+//         }}
+//     />
+// );
 
 export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
 
@@ -33,7 +33,16 @@ export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
             return children;
         }
 
-        return grid.children?.nodes?.map( (node : RowNodeType) => renderComponent(node));
+        //return or create main area -> path:grid.path name:content-area
+        if(Array.isArray(grid.children.nodes) && grid.children.nodes.length > 0){
+            return grid.children?.nodes?.map( (node : RowNodeType) =>
+                <Area key={node.uuid} name={node.name} path={grid.path} />
+            );
+        }
+
+        // else{
+        //     return <Area name="content-area" path={grid.path} />
+        // }
     }
 
     const rowProps : RowPropsType= {};
@@ -53,14 +62,11 @@ export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
         return (
             <Row {...rowProps}>
                 {cols.map((col, index) => {
-                    // Console.log("grid.children?.nodes: ",grid.children?.nodes)
                     const node = grid.children?.nodes[index];
-                    // Console.log("node: ",node)
-
                     const {breakpoint, className} = col;
                     return (
                         <Col key={node.uuid} {...breakpoint} className={className}>
-                            {renderComponent(node)}
+                            <Area name={node?.name || `col-${index}`} path={grid.path} />
                         </Col>
                     );
                 })}
@@ -69,14 +75,11 @@ export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
     }
 
     function getGrid() {
+
         if (mixins.includes(BS4.predefinedGrid)) {
-            // Console.log("cols 1: ",grid.grid?.value?.split('_'))
             const cols = grid.grid?.value?.split('_')
                 .map( (col :string) => ({breakpoint: {md: col}}));
-            // Console.log("cols 2: ",cols)
-            return renderRow({
-                cols,
-            });
+            return renderRow({cols});
         }
 
         // Col-lg-4 order-lg-2,col-md-6 col-lg-4 feature-1-wrap d-md-flex flex-md-column order-lg-1,col-md-6 col-lg-4 feature-1-wrap d-md-flex flex-md-column order-lg-3
@@ -96,10 +99,9 @@ export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
                     // Console.log("breakpoint :",breakpoint);
                     // console.log("className :",className);
                 });
-            return renderRow({
-                cols,
-            });
+            return renderRow({cols});
         }
+
     }
 
     return getGrid();
