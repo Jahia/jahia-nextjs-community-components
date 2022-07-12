@@ -12,15 +12,15 @@ import {
 
 export const BS4Grid = ({id}: ComponentPropsType) => {
     const {workspace, locale} = useContext(JahiaCtx);
-    const mainResourcePath = React.useContext(MainResourceCtx);
+    // const mainResourcePath = React.useContext(MainResourceCtx);
 
     const {data, error, loading} = useQuery(queryGrid, {
         variables: {
             workspace,
             id,
-            language: locale,
-            mainResourcePath,
-            isEditMode: true,
+            // language: locale,
+            // mainResourcePath,
+            // isEditMode: true,
         },
     });
 

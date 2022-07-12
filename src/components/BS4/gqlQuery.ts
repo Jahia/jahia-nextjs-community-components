@@ -4,20 +4,20 @@ import {CORE_NODE_FIELDS} from '@jahia/nextjs-sdk';
 export const queryGrid = gql`query (
         $workspace:Workspace!,
         $id: String!,
-        $mainResourcePath: String,
-        $language:String,
-        $isEditMode: Boolean
+#        $mainResourcePath: String,
+#        $language:String,
+#        $isEditMode: Boolean
     ){
         jcr(workspace: $workspace) {
             workspace
             nodeById(uuid:$id) {
-                renderedContent(
-                    mainResourcePath: $mainResourcePath,
-                    language: $language,
-                    isEditMode:$isEditMode
-                ){
-                    output
-                }
+#                renderedContent(
+#                    mainResourcePath: $mainResourcePath,
+#                    language: $language,
+#                    isEditMode:$isEditMode
+#                ){
+#                    output
+#                }
                 ...CoreNodeFields
                 ...SectionFields
                 ...ContainerFields
@@ -25,8 +25,8 @@ export const queryGrid = gql`query (
                 children{
                     nodes{
                         ...CoreNodeFields
-                        nodetypes: property(name:"j:contributeTypes"){ values }
-                        listlimit: property(name:"limit"){ value:longValue }
+#                        nodetypes: property(name:"j:contributeTypes"){ values }
+#                        listlimit: property(name:"limit"){ value:longValue }
                     }
                 }
             }

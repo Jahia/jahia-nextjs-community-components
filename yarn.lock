@@ -62,7 +62,7 @@
   "version" "1.2.1"
 
 "@jahia/nextjs-sdk@file:jahia-nextjs-sdk-v0.0.2.tgz":
-  "integrity" "sha512-7Tx1Z3xYu8TmntodYhyVKIWOAQcVlg2WpjNvNJUZ1VSftheSW2rtwfNaqSDTTMc3+fEkW+7XuoTTpUsh60m0/w=="
+  "integrity" "sha512-iGan3qWaKXkWGC3TUmLw/BFPAFahBxljlQCher+p9yzMgoyTCiL5/ZPJxZ/6VFxY+5h8N1HKLCqgMtbOaVpuhQ=="
   "resolved" "file:jahia-nextjs-sdk-v0.0.2.tgz"
   "version" "0.0.2"
   dependencies:

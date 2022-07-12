@@ -1,6 +1,9 @@
 import React from 'react';
+import * as PropTypes from "prop-types";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import {Area} from '@jahia/nextjs-sdk';
+
 import {
     BS4ContentTypesEnum as BS4,
     BS4PropsType,
@@ -9,8 +12,10 @@ import {
     RowColsType,
     BreakpointType
 } from '../types';
+
+
 // import {JahiaComponent} from '@jahia/nextjs-sdk';
-import {Area} from '@jahia/nextjs-sdk';
+
 // const renderComponent = (node : RowNodeType) => (
 //     <JahiaComponent
 //         key={node.uuid}
@@ -30,19 +35,18 @@ export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
 
     if (!mixins.includes(BS4.createRow)) {
         if (children) {
-            return children;
+            return <>{children}</>;
         }
 
         //return or create main area -> path:grid.path name:content-area
         if(Array.isArray(grid.children.nodes) && grid.children.nodes.length > 0){
-            return grid.children?.nodes?.map( (node : RowNodeType) =>
+            return grid.children.nodes.map( (node : RowNodeType) =>
                 <Area key={node.uuid} name={node.name} path={grid.path} />
             );
+        }else{
+            const prefix = mixins.includes(BS4.createContainer)?"container":"section";
+            return <Area name={`${prefix}-area`} path={grid.path} />
         }
-
-        // else{
-        //     return <Area name="content-area" path={grid.path} />
-        // }
     }
 
     const rowProps : RowPropsType= {};
@@ -59,14 +63,17 @@ export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
     // console.log("[BS4Row] rowProps : ",rowProps);
 
     function renderRow({cols} : {cols : RowColsType}) {
+        if(!cols)
+            return <></>;
+
         return (
             <Row {...rowProps}>
                 {cols.map((col, index) => {
                     const node = grid.children?.nodes[index];
                     const {breakpoint, className} = col;
                     return (
-                        <Col key={node.uuid} {...breakpoint} className={className}>
-                            <Area name={node?.name || `col-${index}`} path={grid.path} />
+                        <Col key={node?.uuid || index} {...breakpoint} className={className}>
+                            <Area name={node?.name || `col${index}`} path={grid.path} />
                         </Col>
                     );
                 })}
@@ -106,3 +113,9 @@ export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
 
     return getGrid();
 }
+
+BS4Row.propTypes = {
+    grid: PropTypes.object.isRequired,
+    mixins: PropTypes.array,
+    children: PropTypes.node,
+};

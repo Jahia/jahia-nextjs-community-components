@@ -1,5 +1,5 @@
 import {gql} from "@apollo/client";
-import {animateProperties} from "../properties";
+// import {animateProperties} from "../properties";
 
 // const fragment = `
 //     fragment AnimateFields on JCRNode {
