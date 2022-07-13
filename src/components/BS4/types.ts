@@ -1,5 +1,6 @@
 import React from "react";
 import {Node, Properties} from "@jahia/nextjs-sdk/dist/types";
+import {AnimatePropsType} from "../Animate";
 
 export enum BS4ContentTypesEnum {
     createRow = 'bootstrap4mix:createRow',
@@ -23,13 +24,13 @@ export type SectionPropsType = {
     'aria-label'?:string
 }
 
-export type ContainerPropsType = {
+export type ContainerPropsType = AnimatePropsType & {
     id?: string,
     class?:string,
     fluid?:string | boolean
 }
 
-export type RowPropsType = {
+export type RowPropsType = AnimatePropsType & {
     id?: string,
     className?:string
 }

@@ -13,6 +13,7 @@ import {
     BreakpointType
 } from '../types';
 
+import {Animate, getAnimateProps} from '../../Animate';
 
 // import {JahiaComponent} from '@jahia/nextjs-sdk';
 
@@ -38,7 +39,7 @@ export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
             return <>{children}</>;
         }
 
-        //return or create main area -> path:grid.path name:content-area
+        //return or create section or container area in case there is no row
         if(Array.isArray(grid.children.nodes) && grid.children.nodes.length > 0){
             return grid.children.nodes.map( (node : RowNodeType) =>
                 <Area key={node.uuid} name={node.name} path={grid.path} />
@@ -62,22 +63,39 @@ export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
     // console.log("[BS4Row] children : ",children);
     // console.log("[BS4Row] rowProps : ",rowProps);
 
+    const renderCols = ({cols} : {cols : RowColsType}) =>
+        cols.map((col, index) => {
+            const node = grid.children?.nodes[index];
+            const {breakpoint, className} = col;
+            // return (
+            //     <Col key={node?.uuid || index} {...breakpoint} className={className}>
+            //         <Area name={node?.name || `col${index}`} path={grid.path} />
+            //     </Col>
+            // );
+            return (
+                <Animate key={node?.uuid || index} properties={getAnimateProps(node)} component={Col} {...breakpoint} className={className}>
+                    <Area name={node?.name || `col${index}`} path={grid.path} />
+                </Animate>
+            );
+        })
+
     function renderRow({cols} : {cols : RowColsType}) {
         if(!cols)
-            return <></>;
+            return <div>No columns defined for the row, please update your content</div>;
+
+        const useAnimate = (!mixins.includes(BS4.createSection) || !grid.sectionElement?.value) && !mixins.includes(BS4.createContainer)
+        const Component = useAnimate ? Animate : Row;
+
+        if(useAnimate){
+            rowProps.properties = getAnimateProps(grid);
+            rowProps.component = Row
+        }
+
 
         return (
-            <Row {...rowProps}>
-                {cols.map((col, index) => {
-                    const node = grid.children?.nodes[index];
-                    const {breakpoint, className} = col;
-                    return (
-                        <Col key={node?.uuid || index} {...breakpoint} className={className}>
-                            <Area name={node?.name || `col${index}`} path={grid.path} />
-                        </Col>
-                    );
-                })}
-            </Row>
+            <Component {...rowProps}>
+                {renderCols({cols})}
+            </Component>
         );
     }
 

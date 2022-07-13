@@ -10,15 +10,15 @@ export const Animate = ({properties, component, offset, children, className, ...
     const cmp = React.useRef(null);
     const Component = component || 'div';
     const style = isEditMode?{}:{opacity: 0};
-    // console.log("[Animate] properties: ",properties);
-
-    if(!(properties['j:animation']))
-        return (<Component {...props}>{children}</Component>);
+    console.log("[Animate] properties: ",properties);
+    console.log("[Animate] props: ",props);
+    if(!(properties && properties['j:animation']))
+        return (<Component className={className} {...props}>{children}</Component>);
 
     const handleWaypointEnter = () =>{
         // console.log("[handleWaypointEnter] start");
         const element = cmp.current;
-        // console.log("[handleWaypointEnter] element: ",element);
+        console.log("[handleWaypointEnter] element: ",element);
 
 
         if (!element.className.includes('animate__animated')) {

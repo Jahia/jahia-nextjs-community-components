@@ -1,32 +1,23 @@
 import {gql} from '@apollo/client';
 import {CORE_NODE_FIELDS} from '@jahia/nextjs-sdk';
-
+import {ANIMATE_FIELDS} from '../Animate';
 export const queryGrid = gql`query (
         $workspace:Workspace!,
         $id: String!,
-#        $mainResourcePath: String,
-#        $language:String,
-#        $isEditMode: Boolean
+        $animate: Boolean!
     ){
         jcr(workspace: $workspace) {
             workspace
             nodeById(uuid:$id) {
-#                renderedContent(
-#                    mainResourcePath: $mainResourcePath,
-#                    language: $language,
-#                    isEditMode:$isEditMode
-#                ){
-#                    output
-#                }
                 ...CoreNodeFields
                 ...SectionFields
                 ...ContainerFields
                 ...RowFields
+                ...AnimateFields @include(if: $animate)
                 children{
                     nodes{
                         ...CoreNodeFields
-#                        nodetypes: property(name:"j:contributeTypes"){ values }
-#                        listlimit: property(name:"limit"){ value:longValue }
+                        ...AnimateFields @include(if: $animate)
                     }
                 }
             }
@@ -55,4 +46,5 @@ export const queryGrid = gql`query (
         rowHorizontalAlignment:property(name:"rowHorizontalAlignment") {value}
         
     }
-    ${CORE_NODE_FIELDS}`;
+    ${CORE_NODE_FIELDS}
+    ${ANIMATE_FIELDS}`;

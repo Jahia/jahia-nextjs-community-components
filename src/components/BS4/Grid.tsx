@@ -9,7 +9,6 @@ import {
 } from './components';
 
 
-
 export const BS4Grid = ({id}: ComponentPropsType) => {
     const {workspace, locale} = useContext(JahiaCtx);
     // const mainResourcePath = React.useContext(MainResourceCtx);
@@ -18,13 +17,10 @@ export const BS4Grid = ({id}: ComponentPropsType) => {
         variables: {
             workspace,
             id,
-            // language: locale,
-            // mainResourcePath,
-            // isEditMode: true,
+            animate:true //how to configure this ? env var?
         },
     });
 
-    const grid = data?.jcr?.nodeById;
     // Const divs = useMemo(() => !loading && getJahiaDivsProps(data.jcr?.nodeById?.renderedContent?.output), [data, loading]);
 
     if (loading) {
@@ -36,6 +32,7 @@ export const BS4Grid = ({id}: ComponentPropsType) => {
         return <div>Error when loading ${JSON.stringify(error)}</div>;
     }
 
+    const grid = data?.jcr?.nodeById;
     // Console.log("[BS4Grid] grid : ",grid);
     const mixins = grid.mixinTypes?.map((mixin: { name: string; }) => mixin.name) || [];
 

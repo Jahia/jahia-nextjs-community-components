@@ -6,10 +6,10 @@ export enum AnimateContentTypesEnum {
 }
 
 export type AnimatePropsType = {
-    properties: Properties  ,
+    properties?: Properties  ,
     component?:React.ElementType,//React.ReactElement,
     offset?:string,
     className?:string,
     children?:React.ReactNode,
-    props: object
+    props?: object
 }
