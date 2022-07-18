@@ -1,8 +1,7 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
 import {BS4ContentTypesEnum as BS4,BS4PropsType,ContainerPropsType} from '../types';
-import {Animate, getAnimateProps} from '../../Animate';
-import Row from "react-bootstrap/Row";
+import {Animate, convert} from '../../Animate';
 
 export const BS4Container = ({grid, mixins, children} : BS4PropsType) => {
     if (!mixins.includes(BS4.createContainer)) {
@@ -38,7 +37,7 @@ export const BS4Container = ({grid, mixins, children} : BS4PropsType) => {
     const useAnimate = !mixins.includes(BS4.createSection) || !grid.sectionElement?.value;
     const Component = useAnimate ? Animate : Container;
     if(useAnimate){
-        containerProps.properties=getAnimateProps(grid);
+        containerProps.properties=convert(grid.properties);
         containerProps.component = Container
     }
 

@@ -1,3 +1,5 @@
+import {Properties} from "@jahia/nextjs-sdk/dist/types";
+
 export const animateProperties = [
     'j:animation',
     'j:animationDelay',
@@ -6,13 +8,15 @@ export const animateProperties = [
     'j:animationDelayUsage'
 ];
 
+export const convert = (properties:Array<{[k: string]: string}>) =>
+    properties.reduce((props:{[k: string]: string},prop) =>{
+        props[prop.name] = prop.value;
+        return props;
+    },{});
+
 export const getAnimateProps = (properties:{[key:string]:any} = {}) => Object.keys(properties)
     .filter(key=>animateProperties.includes(key))
-    .reduce((props:{[key: string]:string},key) =>{
-        if(typeof properties[key] === 'string'){
-            props[key]=properties[key];
-        }else{
-            props[key]=properties[key].value;
-        }
+    .reduce((props:{[k: string]: string},key)=> {
+        props[key] = properties[key];
         return props;
     },{});

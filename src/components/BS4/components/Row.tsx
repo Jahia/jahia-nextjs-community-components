@@ -13,7 +13,7 @@ import {
     BreakpointType
 } from '../types';
 
-import {Animate, getAnimateProps} from '../../Animate';
+import {Animate, convert} from '../../Animate';
 
 // import {JahiaComponent} from '@jahia/nextjs-sdk';
 
@@ -67,13 +67,21 @@ export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
         cols.map((col, index) => {
             const node = grid.children?.nodes[index];
             const {breakpoint, className} = col;
+            // console.log("[BS4Row] cols node : ",node);
             // return (
             //     <Col key={node?.uuid || index} {...breakpoint} className={className}>
             //         <Area name={node?.name || `col${index}`} path={grid.path} />
             //     </Col>
             // );
+
             return (
-                <Animate key={node?.uuid || index} properties={getAnimateProps(node)} component={Col} {...breakpoint} className={className}>
+                <Animate
+                    key={node?.uuid || index}
+                    properties={convert(node.properties)}
+                    component={Col}
+                    className={className}
+                    offset="95%"
+                    {...breakpoint} >
                     <Area name={node?.name || `col${index}`} path={grid.path} />
                 </Animate>
             );
@@ -87,7 +95,7 @@ export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
         const Component = useAnimate ? Animate : Row;
 
         if(useAnimate){
-            rowProps.properties = getAnimateProps(grid);
+            rowProps.properties = convert(grid.properties);
             rowProps.component = Row
         }
 

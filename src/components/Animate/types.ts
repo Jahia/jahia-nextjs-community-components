@@ -1,4 +1,3 @@
-import {Properties} from "@jahia/nextjs-sdk/dist/types";
 import React from "react";
 
 export enum AnimateContentTypesEnum {
@@ -6,7 +5,7 @@ export enum AnimateContentTypesEnum {
 }
 
 export type AnimatePropsType = {
-    properties?: Properties  ,
+    properties?: {[k: string]: string}  ,
     component?:React.ElementType,//React.ReactElement,
     offset?:string,
     className?:string,
