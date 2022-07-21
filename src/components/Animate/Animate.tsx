@@ -30,7 +30,7 @@ export const Animate = ({properties, component, offset, children, className, ...
             if(properties['j:animationDuration'])
                 element.style.setProperty('--animate-duration', `${properties['j:animationDuration']}s`);
             if(properties['j:animationIterationCount'])
-                element.style.setProperty('--animate-repeat', properties['j:animationIterationCount']);
+                element.style.setProperty('animation-iteration-count', properties['j:animationIterationCount']);
 
             const delay = Number.parseFloat(properties['j:animationDelay'] as string);
             if(delay && delay > 0){
@@ -41,7 +41,7 @@ export const Animate = ({properties, component, offset, children, className, ...
                 }
 
                 if(properties['j:animationDelayUsage'] === "delayBeforeAnimation")
-                    element.style.setProperty('--animate-delay', (properties['j:animationDelay'] as string));
+                    element.style.setProperty('animation-delay', `${properties['j:animationDelay']}s`);
             }
             run();
         }
