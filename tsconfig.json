@@ -27,7 +27,8 @@
       "types",
       "node_modules/@types"
     ],
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "include": [
     "src"
