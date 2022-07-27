@@ -1,14 +1,23 @@
 import React from 'react';
 import {DefaultImage, DefaultImagePropsType} from '@jahia/nextjs-sdk';
-import styles from './bubble_2.module.css';
 import classNames from 'classnames';
-// import * as PropTypes from 'prop-types';
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme?: any) => ({
+    jncc_Blob__imgBlob:{
+        clipPath: 'url(#Blob__path--blob-2)'
+    },
+    jncc_Blob__svg:{
+        height: 0,
+        width: 0
+    }
+}));
 
 export function ClipPathBubble2({path, alt = '', className = ''}:DefaultImagePropsType) {
-
+    const styles = useStyles();
     return (
         <figure>
-            <svg className={styles.Blob__svg} width="482" height="430" viewBox="0 0 482 430" aria-hidden="true">
+            <svg className={styles.jncc_Blob__svg} width="482" height="430" viewBox="0 0 482 430" aria-hidden="true">
 
                 <clipPath
                     id="Blob__path--blob-2"
@@ -23,7 +32,7 @@ export function ClipPathBubble2({path, alt = '', className = ''}:DefaultImagePro
             <DefaultImage
                 path={path}
                 alt={alt}
-                className={classNames(className, styles.Blob__imgBlob)}
+                className={classNames(className, styles.jncc_Blob__imgBlob)}
             />
         </figure>
     );

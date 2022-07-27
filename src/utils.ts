@@ -7,7 +7,7 @@ function getRandomString (length : number, format: string){
     let result = "";
     for (let i = length; i > 0; --i) result += mask[Math.floor(Math.random() * mask.length)];
     return result;
-};
+}
 
 export {
     getRandomString

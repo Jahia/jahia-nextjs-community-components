@@ -12,7 +12,7 @@ export enum BS4ContentTypesEnum {
 
 export type BS4PropsType = {
     grid: { [key: string]: any },
-    mixins?: string[],
+    mixins: string[],
     children?: React.ReactNode
 }
 

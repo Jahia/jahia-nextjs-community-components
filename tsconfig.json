@@ -5,6 +5,8 @@
     "sourceMap": true,
     "allowJs": false,
     "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
     "module": "commonjs",
     "target": "ESNext",
     "jsx": "react",

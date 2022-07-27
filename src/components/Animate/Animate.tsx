@@ -17,33 +17,34 @@ export const Animate = ({properties, component, offset, children, className, ...
 
     const handleWaypointEnter = () =>{
         // console.log("[handleWaypointEnter] start");
-        const element = cmp.current;
-        // console.log("[handleWaypointEnter] element: ",element);
-
-
-        if (!element.className.includes('animate__animated')) {
-            const run = () => {
-                element.style.setProperty('opacity', '1');
-                element.classList.add(`animate__${properties['j:animation']}`, 'animate__animated');
-            }
-
-            if(properties['j:animationDuration'])
-                element.style.setProperty('--animate-duration', `${properties['j:animationDuration']}s`);
-            if(properties['j:animationIterationCount'])
-                element.style.setProperty('animation-iteration-count', properties['j:animationIterationCount']);
-
-            const delay = Number.parseFloat(properties['j:animationDelay'] as string);
-            if(delay && delay > 0){
-
-                if(properties['j:animationDelayUsage'] === "delayBeforeDisplay"){
-                    setTimeout(run, delay*1000);
-                    return;
+        const potentialElement:HTMLElement | null = cmp.current;
+        // console.log("[handleWaypointEnter] potentialElement: ",potentialElement);
+        if(potentialElement){
+            const element : HTMLElement = potentialElement;
+            if (!element.className.includes('animate__animated')) {
+                const run = () => {
+                    element.style.setProperty('opacity', '1');
+                    element.classList.add(`animate__${properties['j:animation']}`, 'animate__animated');
                 }
 
-                if(properties['j:animationDelayUsage'] === "delayBeforeAnimation")
-                    element.style.setProperty('animation-delay', `${properties['j:animationDelay']}s`);
+                if(properties['j:animationDuration'])
+                    element.style.setProperty('--animate-duration', `${properties['j:animationDuration']}s`);
+                if(properties['j:animationIterationCount'])
+                    element.style.setProperty('animation-iteration-count', properties['j:animationIterationCount']);
+
+                const delay = Number.parseFloat(properties['j:animationDelay'] as string);
+                if(delay && delay > 0){
+
+                    if(properties['j:animationDelayUsage'] === "delayBeforeDisplay"){
+                        setTimeout(run, delay*1000);
+                        return;
+                    }
+
+                    if(properties['j:animationDelayUsage'] === "delayBeforeAnimation")
+                        element.style.setProperty('animation-delay', `${properties['j:animationDelay']}s`);
+                }
+                run();
             }
-            run();
         }
     }
 

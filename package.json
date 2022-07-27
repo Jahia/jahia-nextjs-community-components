@@ -10,6 +10,7 @@
   "dependencies": {
     "@apollo/client": "3.5.9",
     "@jahia/nextjs-sdk": "file:jahia-nextjs-sdk-v0.0.2.tgz",
+    "@material-ui/core": "^4.12.4",
     "graphql": "^16.0.1",
     "graphql-tag": "^2.12.6",
     "next": "^12.0.10",
