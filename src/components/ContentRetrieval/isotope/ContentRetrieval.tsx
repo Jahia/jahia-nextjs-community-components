@@ -8,48 +8,49 @@ import {ContentRetrievalPropsType, SubContentQueryProps} from "../types";
 import {contentRetrievalProperties} from "../properties";
 
 const useStyles = makeStyles((theme?: any) => ({
-// alimeProjectsMenu {
-//     position: "relative",
-//     zIndex: 1,
-//     marginBottom: "40px",
-//
-//     ".portfolio-menu .btn" {
-//         position: relative;
-//         z-index: 1;
-//         padding: 0;
-//         border: 0;
-//         background-color: transparent;
-//         font-size: 20px;
-//         font-weight: 600;
-//         border-radius: 0;
-//         margin: 0 25px;
-//
-//
-//     @media #{$breakpoint-xs} {
-//             font-size: 14px;
-//         margin: 0 5px;
-//     }
-//
-//     &::after {
-//         @include transition-duration(500ms);
-//             position: absolute;
-//             width: 0%;
-//             height: 3px;
-//             background-color: $primary;
-//             content: '';
-//             bottom: -5px;
-//             left: 0;
-//             right: 0;
-//             z-index: 1;
-//         }
-//
-//     &.active {
-//         &::after {
-//                 width: 100%;
-//             }
-//         }
-//     }
-// }
+    menu : {
+        position: "relative",
+        zIndex: 1,
+        marginBottom: "40px"
+    },
+
+    btn : {
+        position: "relative",
+        zIndex: 1,
+        padding: 0,
+        border: 0,
+        backgroundColor: "transparent",
+        fontSize: "20px",
+        fontWeight: 600,
+        borderRadius: 0,
+        margin: "0 25px",
+        transitionDuration: "500ms",
+        textTransform: "capitalize",
+
+        [theme.breakpoints.down('xs')]: {
+            fontSize: "14px",
+            margin: "0 5px"
+        },
+
+        "&::after" : {
+            transitionDuration: "500ms",
+            position: "absolute",
+            width: "0%",
+            height: "3px",
+            backgroundColor: "var(--primary)",
+            content: "''",
+            bottom: "-5px",
+            left: 0,
+            right: 0,
+            zIndex: 1
+        },
+
+        "&.active" : {
+            "&::after" : {
+                width: "100%"
+            }
+        }
+    }
 }));
 
 export const IsotopeContentRetrieval = ({id, referenceComponent,className}: ContentRetrievalPropsType) => {
@@ -102,7 +103,7 @@ export const IsotopeContentRetrieval = ({id, referenceComponent,className}: Cont
         return <div className="text-warning">No data returned by IsotopeContentRetrieval</div>
 
     const properties  = data.properties;
-    const filter = properties['j:filter'] as Node[];
+    const filter = properties['j:filter'] as Node[] | [];
     const queryProps : SubContentQueryProps = {
         nodeType:properties['j:type'] as string,
         startNode:properties['j:startNode'] as Node,
@@ -120,22 +121,24 @@ export const IsotopeContentRetrieval = ({id, referenceComponent,className}: Cont
             <Container>
                 <Row>
                     <Col lg={12}>
-                        <div className="alime-projects-menu">
-                            <div className="portfolio-menu text-center">
+                        <div className={styles.menu}>
+                            <div className="text-center">
                                 <button
                                     className={classnames(
                                         "btn",
+                                        styles.btn,
                                         {active : activeClass === '*'})
                                     }
-                                    onClick={handleFilterKeyChange('*')}>ALL</button>
+                                    onClick={handleFilterKeyChange('*')}>All</button>
 
                                 {filter.map(category =>(<button
                                     key={category.uuid}
                                     className={classnames(
                                         "btn",
+                                        styles.btn,
                                         {active : activeClass === category.name})
                                     }
-                                    onClick={handleFilterKeyChange(category.name)}>{category.name.toUpperCase()}</button>))
+                                    onClick={handleFilterKeyChange(category.name)}>{category.name.toLowerCase()}</button>))
                                 }
 
                             </div>

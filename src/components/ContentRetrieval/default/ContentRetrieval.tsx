@@ -36,9 +36,9 @@ export const ContentRetrieval = ({id, referenceComponent,className}: ContentRetr
     return (
         <div className={classnames("section",className)}>
             <Container>
-                <Row>
+                <Row className="justify-content-center mb-5">
                     <Col lg={8} className="text-center">
-                        {properties['jcr:title'] as string}
+                        <h2 className="heading mb-4">{properties['jcr:title'] as string}</h2>
                     </Col>
                 </Row>
 

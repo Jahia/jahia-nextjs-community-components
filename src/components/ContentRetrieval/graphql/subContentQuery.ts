@@ -52,7 +52,7 @@ export const getSubContentQuery = ({nodeType,startNode,filter,maxItems,sortCrite
                         properties(names:["j:defaultCategory"]){
                             name
                             refNodes{
-                                name
+                                ...CoreNodeFields
                             }
                         }
                     }

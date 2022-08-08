@@ -29,7 +29,7 @@ export const SubContent= ({queryProps,referenceComponent,className,subNodesView,
     if(!Array.isArray(nodes) || nodes.length === 0)
         return <div className="text-warning">{noResultsMessage || "No result"}</div>
 
-    const getNodeDisplay =(gqlNode:GqlNode)  => {
+    const getNodeDisplay =(gqlNode:GqlNode,index:number)  => {
         let node = convert(gqlNode);
         let categories : string[] = [];
         if(node.properties){
@@ -46,8 +46,12 @@ export const SubContent= ({queryProps,referenceComponent,className,subNodesView,
             id: node.uuid,
             path: node.path
         }
+        let lg = 3;
+        if((index % 10 === 1) || (index % 10 === 6))
+            lg = 6;
+
         return (
-            <Col xs={12} sm={6} lg={3} className={classNames("single_gallery_item wow mb-30",categories)}>
+            <Col xs={12} sm={6} lg={lg} className={classNames("single_gallery_item wow mb-4",categories)}>
                 <Component {...contentProps}/>
             </Col>
         )
@@ -55,7 +59,7 @@ export const SubContent= ({queryProps,referenceComponent,className,subNodesView,
 
     return (
         <Row className={classnames("alime-portfolio",className)}>
-            {nodes.map((node:GqlNode) => getNodeDisplay(node))}
+            {nodes.map((node:GqlNode,index) => getNodeDisplay(node,index))}
         </Row>
     )
 }
