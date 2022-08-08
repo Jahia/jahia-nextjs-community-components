@@ -1,5 +1,5 @@
 import React from "react";
-import {useNode, Node, ComponentPropsType, JahiaCtx} from "@jahia/nextjs-sdk";
+import {useNode, Node, JahiaCtx} from "@jahia/nextjs-sdk";
 import {SubContent} from "./SubContent";
 import {Col, Container, Row} from "react-bootstrap";
 import {contentRetrievalProperties} from "../properties";

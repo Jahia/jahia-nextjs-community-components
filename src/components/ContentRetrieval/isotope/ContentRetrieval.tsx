@@ -1,5 +1,5 @@
 import React from "react";
-import {useNode, Node, ComponentPropsType, getComponent, JahiaCtx, CORE_NODE_FIELDS} from "@jahia/nextjs-sdk";
+import {useNode, Node, JahiaCtx} from "@jahia/nextjs-sdk";
 import {SubContent} from "./SubContent";
 import {Col, Container, Row} from "react-bootstrap";
 import classnames from "classnames";
@@ -60,14 +60,14 @@ export const IsotopeContentRetrieval = ({id, referenceComponent,className}: Cont
     // init one ref to store the future isotope object
     const isotope = React.useRef<Isotope | null>()
     // store the filter keyword in a state
-    const [filterKey, setFilterKey] = React.useState('*')
-    const [activeClass, setActiveClass] = React.useState('*')
-
+    const [filterKey, setFilterKey] = React.useState('*');
+    const [activeClass, setActiveClass] = React.useState('*');
+    const isotopeId = `isotope-${id}`;
     // initialize an Isotope object with configs
     React.useEffect(() => {
         if (typeof window !== 'undefined'){
             import("isotope-layout").then( Isotope => {
-                isotope.current = new Isotope.default('.alime-portfolio', {
+                isotope.current = new Isotope.default(`#${isotopeId}`, {
                     // itemSelector: ".all",
                     percentPosition: true,
                     masonry: {
@@ -117,7 +117,7 @@ export const IsotopeContentRetrieval = ({id, referenceComponent,className}: Cont
     const handleFilterKeyChange = (key: string) => () => setFilterKey(key)
 
     return (
-        <div className="section">
+        <div className={classnames("section",className)}>
             <Container>
                 <Row>
                     <Col lg={12}>
@@ -152,6 +152,7 @@ export const IsotopeContentRetrieval = ({id, referenceComponent,className}: Cont
                     referenceComponent={referenceComponent}
                     subNodesView={properties['j:subNodesViewNextjs'] as string}
                     noResultsMessage={properties['j:noResultsMessage'] as string}
+                    isotopeId={isotopeId}
                 />
 
             </Container>

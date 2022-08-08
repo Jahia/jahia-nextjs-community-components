@@ -4,10 +4,9 @@ import {getComponent, JahiaCtx, GqlNode, Node, convert} from "@jahia/nextjs-sdk"
 import {Col, Row} from "react-bootstrap";
 import classNames from "classnames";
 import {getSubContentQuery} from "../graphql/subContentQuery";
-import {SubContentPropsType} from "../types";
-import classnames from "classnames";
+import {SubContentIsotopePropsType} from "../types";
 
-export const SubContent= ({queryProps,referenceComponent,className,subNodesView,noResultsMessage}:SubContentPropsType) => {
+export const SubContent= ({queryProps,referenceComponent,isotopeId,className,subNodesView,noResultsMessage}:SubContentIsotopePropsType) => {
     const {workspace} = React.useContext(JahiaCtx);
 
     const {data, error, loading} = useQuery(getSubContentQuery(queryProps), {
@@ -51,14 +50,14 @@ export const SubContent= ({queryProps,referenceComponent,className,subNodesView,
             lg = 6;
 
         return (
-            <Col xs={12} sm={6} lg={lg} className={classNames("single_gallery_item wow mb-4",categories)}>
+            <Col key={node.uuid} xs={12} sm={6} lg={lg} className={classNames("single_gallery_item wow mb-4",categories)}>
                 <Component {...contentProps}/>
             </Col>
         )
     }
 
     return (
-        <Row className={classnames("alime-portfolio",className)}>
+        <Row id={isotopeId} className={className}>
             {nodes.map((node:GqlNode,index) => getNodeDisplay(node,index))}
         </Row>
     )

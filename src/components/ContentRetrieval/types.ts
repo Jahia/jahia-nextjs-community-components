@@ -23,3 +23,7 @@ export type SubContentPropsType = {
     subNodesView?: string
     noResultsMessage?: string
 }
+
+export type SubContentIsotopePropsType = SubContentPropsType & {
+    isotopeId: string
+}

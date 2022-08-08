@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery} from "@apollo/client";
-import {getComponent, JahiaCtx, GqlNode, Node, convert} from "@jahia/nextjs-sdk";
+import {getComponent, JahiaCtx, GqlNode, convert} from "@jahia/nextjs-sdk";
 import {Col, Row} from "react-bootstrap";
 import {SubContentPropsType} from "../types";
 import {getSubContentQuery} from "../graphql/subContentQuery";

@@ -1,5 +1,3 @@
-import {Properties} from "@jahia/nextjs-sdk/dist/types";
-
 export const animateProperties = [
     'j:animation',
     'j:animationDelay',

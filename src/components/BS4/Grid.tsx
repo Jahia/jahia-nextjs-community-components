@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {JahiaCtx, MainResourceCtx, ComponentPropsType} from '@jahia/nextjs-sdk';
+import {JahiaCtx, ComponentPropsType} from '@jahia/nextjs-sdk';
 import {useQuery} from '@apollo/client';
 import {queryGrid} from './gqlQuery';
 import {
@@ -10,8 +10,7 @@ import {
 
 
 export const BS4Grid = ({id}: ComponentPropsType) => {
-    const {workspace, locale} = useContext(JahiaCtx);
-    // const mainResourcePath = React.useContext(MainResourceCtx);
+    const {workspace} = useContext(JahiaCtx);
 
     const {data, error, loading} = useQuery(queryGrid, {
         variables: {
