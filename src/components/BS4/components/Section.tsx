@@ -1,5 +1,5 @@
 import React from 'react';
-import {BS4ContentTypesEnum as BS4,BS4PropsType,SectionPropsType} from '../types';
+import {BS4ContentTypesEnum as BS4, BS4PropsType, SectionPropsType} from '../types';
 import {Animate, convert} from '../../Animate';
 
 export const BS4Section = ({grid, mixins, children} : BS4PropsType) => {
@@ -32,15 +32,15 @@ export const BS4Section = ({grid, mixins, children} : BS4PropsType) => {
     // console.log("[BS4Section] children : ",children);
     // console.log("[BS4Section] sectionProps : ",sectionProps);
     // if(mixins.includes(animateMix.animate))
-        return (
-            <Animate
+    return (
+        <Animate
                 properties={convert(grid.properties)}
                 component={grid.sectionElement.value}
                 {...sectionProps}
-            >
-                {children}
-            </Animate>
-        )
+        >
+            {children}
+        </Animate>
+    );
 
-    // return React.createElement(grid.sectionElement.value, sectionProps, children);
-}
+    // Return React.createElement(grid.sectionElement.value, sectionProps, children);
+};

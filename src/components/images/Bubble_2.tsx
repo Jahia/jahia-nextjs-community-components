@@ -1,13 +1,13 @@
 import React from 'react';
 import {DefaultImage, DefaultImagePropsType} from '@jahia/nextjs-sdk';
 import classNames from 'classnames';
-import { makeStyles } from "@material-ui/core/styles";
+import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme?: any) => ({
-    jncc_Blob__imgBlob:{
+    jnccBlobImgBlob: {
         clipPath: 'url(#Blob__path--blob-2)'
     },
-    jncc_Blob__svg:{
+    jnccBlobSvg: {
         height: 0,
         width: 0
     }
@@ -17,7 +17,7 @@ export function ClipPathBubble2({path, alt = '', className = ''}:DefaultImagePro
     const styles = useStyles();
     return (
         <figure>
-            <svg className={styles.jncc_Blob__svg} width="482" height="430" viewBox="0 0 482 430" aria-hidden="true">
+            <svg className={styles.jnccBlobSvg} width="482" height="430" viewBox="0 0 482 430" aria-hidden="true">
 
                 <clipPath
                     id="Blob__path--blob-2"
@@ -32,7 +32,7 @@ export function ClipPathBubble2({path, alt = '', className = ''}:DefaultImagePro
             <DefaultImage
                 path={path}
                 alt={alt}
-                className={classNames(className, styles.jncc_Blob__imgBlob)}
+                className={classNames(className, styles.jnccBlobImgBlob)}
             />
         </figure>
     );
@@ -45,5 +45,5 @@ export function ClipPathBubble2({path, alt = '', className = ''}:DefaultImagePro
 // };
 
 ClipPathBubble2.defaultProps = {
-    className:'img-fluid'
-}
+    className: 'img-fluid'
+};

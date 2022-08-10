@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from 'react-bootstrap/Container';
-import {BS4ContentTypesEnum as BS4,BS4PropsType,ContainerPropsType} from '../types';
+import {BS4ContentTypesEnum as BS4, BS4PropsType, ContainerPropsType} from '../types';
 import {Animate, convert} from '../../Animate';
 
 export const BS4Container = ({grid, mixins, children} : BS4PropsType) => {
@@ -36,20 +36,18 @@ export const BS4Container = ({grid, mixins, children} : BS4PropsType) => {
     // console.log("[BS4Container] containerProps : ",containerProps);
     const useAnimate = !mixins.includes(BS4.createSection) || !grid.sectionElement?.value;
     const Component = useAnimate ? Animate : Container;
-    if(useAnimate){
-        containerProps.properties=convert(grid.properties);
-        containerProps.component = Container
+    if (useAnimate) {
+        containerProps.properties = convert(grid.properties);
+        containerProps.component = Container;
     }
 
-
-    return(
+    return (
         <Component {...containerProps}>
             {children}
         </Component>
     );
 
-
-    // if(!mixins.includes(BS4.createSection) || !grid.sectionElement?.value)
+    // If(!mixins.includes(BS4.createSection) || !grid.sectionElement?.value)
     //     return (
     //         <Animate properties={getAnimateProps(grid)} component={Container} {...containerProps}>
     //             {children}
@@ -60,4 +58,4 @@ export const BS4Container = ({grid, mixins, children} : BS4PropsType) => {
     //         {children}
     //     </Container>
     // );
-}
+};

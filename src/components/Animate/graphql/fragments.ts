@@ -1,5 +1,5 @@
-import {gql} from "@apollo/client";
-// import {animateProperties} from "../properties";
+import {gql} from '@apollo/client';
+// Import {animateProperties} from "../properties";
 
 // const fragment = `
 //     fragment AnimateFields on JCRNode {
@@ -22,7 +22,7 @@ const fragment = `
             value
         }
     }
-`
+`;
 
 export const ANIMATE_FIELDS = gql(fragment);
 

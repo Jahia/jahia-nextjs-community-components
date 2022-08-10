@@ -1,2 +1,2 @@
-export * from './default'
-export * from './isotope'
+export * from './default';
+export * from './isotope';

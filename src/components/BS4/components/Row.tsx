@@ -1,5 +1,5 @@
 import React from 'react';
-import * as PropTypes from "prop-types";
+import * as PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import {Area} from '@jahia/nextjs-sdk';
@@ -15,7 +15,7 @@ import {
 
 import {Animate, convert} from '../../Animate';
 
-// import {JahiaComponent} from '@jahia/nextjs-sdk';
+// Import {JahiaComponent} from '@jahia/nextjs-sdk';
 
 // const renderComponent = (node : RowNodeType) => (
 //     <JahiaComponent
@@ -33,24 +33,23 @@ import {Animate, convert} from '../../Animate';
 // );
 
 export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
-
     if (!mixins.includes(BS4.createRow)) {
         if (children) {
             return <>{children}</>;
         }
 
-        //return or create section or container area in case there is no row
-        if(Array.isArray(grid.children.nodes) && grid.children.nodes.length > 0){
-            return grid.children.nodes.map( (node : RowNodeType) =>
-                <Area key={node.uuid} name={node.name} path={grid.path} />
+        // Return or create section or container area in case there is no row
+        if (Array.isArray(grid.children.nodes) && grid.children.nodes.length > 0) {
+            return grid.children.nodes.map((node : RowNodeType) =>
+                <Area key={node.uuid} name={node.name} path={grid.path}/>
             );
-        }else{
-            const prefix = mixins.includes(BS4.createContainer)?"container":"section";
-            return <Area name={`${prefix}-area`} path={grid.path} />
         }
+
+        const prefix = mixins.includes(BS4.createContainer) ? 'container' : 'section';
+        return <Area name={`${prefix}-area`} path={grid.path}/>;
     }
 
-    const rowProps : RowPropsType= {};
+    const rowProps : RowPropsType = {};
     if (grid.rowId?.value) {
         rowProps.id = grid.rowId.value;
     }
@@ -67,7 +66,7 @@ export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
         cols.map((col, index) => {
             const node = grid.children?.nodes[index];
             const {breakpoint, className} = col;
-            // console.log("[BS4Row] cols node : ",node);
+            // Console.log("[BS4Row] cols node : ",node);
             // return (
             //     <Col key={node?.uuid || index} {...breakpoint} className={className}>
             //         <Area name={node?.name || `col${index}`} path={grid.path} />
@@ -81,24 +80,25 @@ export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
                     component={Col}
                     className={className}
                     offset="95%"
-                    {...breakpoint} >
-                    <Area name={node?.name || `col${index}`} path={grid.path} />
+                    {...breakpoint}
+                >
+                    <Area name={node?.name || `col${index}`} path={grid.path}/>
                 </Animate>
             );
-        })
+        });
 
     function renderRow({cols} : {cols : RowColsType}) {
-        if(!cols)
+        if (!cols) {
             return <div>No columns defined for the row, please update your content</div>;
-
-        const useAnimate = (!mixins.includes(BS4.createSection) || !grid.sectionElement?.value) && !mixins.includes(BS4.createContainer)
-        const Component = useAnimate ? Animate : Row;
-
-        if(useAnimate){
-            rowProps.properties = convert(grid.properties);
-            rowProps.component = Row
         }
 
+        const useAnimate = (!mixins.includes(BS4.createSection) || !grid.sectionElement?.value) && !mixins.includes(BS4.createContainer);
+        const Component = useAnimate ? Animate : Row;
+
+        if (useAnimate) {
+            rowProps.properties = convert(grid.properties);
+            rowProps.component = Row;
+        }
 
         return (
             <Component {...rowProps}>
@@ -108,10 +108,9 @@ export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
     }
 
     function getGrid() {
-
         if (mixins.includes(BS4.predefinedGrid)) {
             const cols = grid.grid?.value?.split('_')
-                .map( (col :string) => ({breakpoint: {md: col}}));
+                .map((col :string) => ({breakpoint: {md: col}}));
             return renderRow({cols});
         }
 
@@ -119,7 +118,7 @@ export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
         if (mixins.includes(BS4.customGrid)) {
             // Console.log("customGrid : ",grid.gridClasses);
             const cols = grid.gridClasses?.value?.split(',')
-                .map( (col : string) => {
+                .map((col : string) => {
                     // Col = "col-lg-4 order-lg-2"
                     const regex = /col-(?<key>[a-z]{2})-(?<value>[0-9]{1,2})/gm;
                     let className = col;
@@ -134,14 +133,13 @@ export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
                 });
             return renderRow({cols});
         }
-
     }
 
     return getGrid();
-}
+};
 
 BS4Row.propTypes = {
     grid: PropTypes.object.isRequired,
     mixins: PropTypes.array,
-    children: PropTypes.node,
+    children: PropTypes.node
 };

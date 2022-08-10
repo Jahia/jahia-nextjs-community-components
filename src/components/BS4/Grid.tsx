@@ -8,7 +8,6 @@ import {
     BS4Row as Row
 } from './components';
 
-
 export const BS4Grid = ({id}: ComponentPropsType) => {
     const {workspace} = useContext(JahiaCtx);
 
@@ -16,8 +15,8 @@ export const BS4Grid = ({id}: ComponentPropsType) => {
         variables: {
             workspace,
             id,
-            animate:true //how to configure this ? env var?
-        },
+            animate: true // How to configure this ? env var?
+        }
     });
 
     // Const divs = useMemo(() => !loading && getJahiaDivsProps(data.jcr?.nodeById?.renderedContent?.output), [data, loading]);
@@ -42,4 +41,4 @@ export const BS4Grid = ({id}: ComponentPropsType) => {
             </Container>
         </Section>
     );
-}
+};

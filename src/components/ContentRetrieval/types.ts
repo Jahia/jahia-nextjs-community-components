@@ -1,5 +1,5 @@
-import {ComponentPropsType, Node} from "@jahia/nextjs-sdk";
-import React from "react";
+import {ComponentPropsType, Node} from '@jahia/nextjs-sdk';
+import React from 'react';
 
 export type ContentRetrievalPropsType = ComponentPropsType & {
     className?: string,

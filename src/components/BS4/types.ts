@@ -1,6 +1,6 @@
-import React from "react";
-import {Node, Properties} from "@jahia/nextjs-sdk/dist/types";
-import {AnimatePropsType} from "../Animate";
+import React from 'react';
+import {Node, Properties} from '@jahia/nextjs-sdk/dist/types';
+import {AnimatePropsType} from '../Animate';
 
 export enum BS4ContentTypesEnum {
     createRow = 'bootstrap4mix:createRow',
