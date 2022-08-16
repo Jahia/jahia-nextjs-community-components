@@ -16,6 +16,12 @@ export type SubContentQueryProps = {
     locale:string
 }
 
+export type MenuBtnIsotopePropsType = ComponentPropsType & {
+    handleClick: (key: string) => () => void,
+    activeClass: string,
+    styles: string
+}
+
 export type SubContentPropsType = {
     queryProps:SubContentQueryProps
     referenceComponent: React.ComponentType

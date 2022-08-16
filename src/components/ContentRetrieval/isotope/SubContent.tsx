@@ -26,7 +26,7 @@ export const SubContent = ({queryProps, referenceComponent, isotopeId, className
 
     const {nodes} = data.jcr.nodesByCriteria;
     if (!Array.isArray(nodes) || nodes.length === 0) {
-        return <div className="text-warning">{noResultsMessage || 'No result'}</div>;
+        return <div>{noResultsMessage || 'No result'}</div>;
     }
 
     const getNodeDisplay = (gqlNode:GqlNode, index:number) => {

@@ -1,6 +1,7 @@
 import React from 'react';
 import {useNode, Node, JahiaCtx} from '@jahia/nextjs-sdk';
 import {SubContent} from './SubContent';
+import {MenuBtn} from './MenuBtn';
 import {Col, Container, Row} from 'react-bootstrap';
 import classnames from 'classnames';
 import {makeStyles} from '@material-ui/core/styles';
@@ -106,7 +107,7 @@ export const IsotopeContentRetrieval = ({id, referenceComponent, className}: Con
     }
 
     if (!data || !data.properties) {
-        return <div className="text-warning">No data returned by IsotopeContentRetrieval</div>;
+        return <div>No data returned by IsotopeContentRetrieval</div>;
     }
 
     const properties = data.properties;
@@ -141,18 +142,13 @@ export const IsotopeContentRetrieval = ({id, referenceComponent, className}: Con
                                 </button>
 
                                 {filter.map(category => (
-                                    <button
-                                    key={category.uuid}
-                                    type="button"
-                                    className={classnames(
-                                        'btn',
-                                        styles.btn,
-                                        {active: activeClass === category.name})}
-                                    onClick={handleFilterKeyChange(category.name)}
-                                    >{category.name.toLowerCase()}
-                                    </button>
-))}
-
+                                    <MenuBtn key={category.uuid}
+                                             id={category.uuid}
+                                             activeClass={activeClass}
+                                             handleClick={handleFilterKeyChange}
+                                             styles={styles.btn}/>
+                                  )
+                                )}
                             </div>
                         </div>
 
