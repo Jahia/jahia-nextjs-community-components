@@ -72,11 +72,15 @@ export const BS4Row = ({grid, mixins, children} : BS4PropsType) => {
             //         <Area name={node?.name || `col${index}`} path={grid.path} />
             //     </Col>
             // );
+            let properties = {};
+            if (node?.properties) {
+                properties = convert(node.properties);
+            }
 
             return (
                 <Animate
                     key={node?.uuid || index}
-                    properties={convert(node.properties)}
+                    properties={properties}
                     component={Col}
                     className={className}
                     offset="95%"
