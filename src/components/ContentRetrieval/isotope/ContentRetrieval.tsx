@@ -4,11 +4,11 @@ import {SubContent} from './SubContent';
 import {MenuBtn} from './MenuBtn';
 import {Col, Container, Row} from 'react-bootstrap';
 import classnames from 'classnames';
-import {makeStyles} from '@material-ui/core/styles';
+import {makeStyles} from '~/makesStyles';
 import {ContentRetrievalPropsType, SubContentQueryProps} from '../types';
 import {contentRetrievalProperties} from '../properties';
 
-const useStyles = makeStyles((theme?: any) => ({
+const useStyles = makeStyles()(theme => ({
     menu: {
         position: 'relative',
         zIndex: 1,
@@ -24,11 +24,11 @@ const useStyles = makeStyles((theme?: any) => ({
         fontSize: '20px',
         fontWeight: 600,
         borderRadius: 0,
-        margin: '0 25px',
+        margin: '0 25px 25px',
         transitionDuration: '500ms',
         textTransform: 'capitalize',
 
-        [theme.breakpoints.down('xs')]: {
+        [theme.breakpoints.down('sm')]: {
             fontSize: '14px',
             margin: '0 5px'
         },
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme?: any) => ({
 
 export const IsotopeContentRetrieval = ({id, referenceComponent, className}: ContentRetrievalPropsType) => {
     const {locale} = React.useContext(JahiaCtx);
-    const styles = useStyles();
+    const {classes} = useStyles();
 
     // Init one ref to store the future isotope object
     const isotope = React.useRef<Isotope | null>();
@@ -129,13 +129,13 @@ export const IsotopeContentRetrieval = ({id, referenceComponent, className}: Con
             <Container>
                 <Row>
                     <Col lg={12}>
-                        <div className={styles.menu}>
+                        <div className={classes.menu}>
                             <div className="text-center">
                                 <button
                                     type="button"
                                     className={classnames(
                                         'btn',
-                                        styles.btn,
+                                        classes.btn,
                                         {active: activeClass === '*'})}
                                     onClick={handleFilterKeyChange('*')}
                                 >All
@@ -146,7 +146,7 @@ export const IsotopeContentRetrieval = ({id, referenceComponent, className}: Con
                                              id={category.uuid}
                                              activeClass={activeClass}
                                              handleClick={handleFilterKeyChange}
-                                             styles={styles.btn}/>
+                                             styles={classes.btn}/>
                                   )
                                 )}
                             </div>

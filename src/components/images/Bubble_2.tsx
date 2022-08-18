@@ -1,26 +1,26 @@
 import React from 'react';
 import {DefaultImage, DefaultImagePropsType} from '@jahia/nextjs-sdk';
 import classNames from 'classnames';
-import {makeStyles} from '@material-ui/core/styles';
+import {makeStyles} from 'tss-react/mui';
 
-const useStyles = makeStyles((theme?: any) => ({
-    jnccBlobImgBlob: {
-        clipPath: 'url(#Blob__path--blob-2)'
-    },
-    jnccBlobSvg: {
+const useStyles = makeStyles()({
+    svg: {
         height: 0,
         width: 0
+    },
+    img: {
+        clipPath: 'url(#clipPath--bubble-2)'
     }
-}));
+});
 
 export function ClipPathBubble2({path, alt = '', className = ''}:DefaultImagePropsType) {
-    const styles = useStyles();
+    const {classes} = useStyles();
     return (
         <figure>
-            <svg className={styles.jnccBlobSvg} width="482" height="430" viewBox="0 0 482 430" aria-hidden="true">
+            <svg className={classes.svg} width="482" height="430" viewBox="0 0 482 430" aria-hidden="true">
 
                 <clipPath
-                    id="Blob__path--blob-2"
+                    id="clipPath--bubble-2"
                     clipPathUnits="objectBoundingBox"
                     transform="scale(0.002074 0.001785)"
                 >
@@ -32,7 +32,7 @@ export function ClipPathBubble2({path, alt = '', className = ''}:DefaultImagePro
             <DefaultImage
                 path={path}
                 alt={alt}
-                className={classNames(className, styles.jnccBlobImgBlob)}
+                className={classNames(className, classes.img)}
             />
         </figure>
     );

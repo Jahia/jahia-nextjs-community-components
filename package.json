@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "@apollo/client": "3.5.9",
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
     "@jahia/nextjs-sdk": "^0.0.3",
-    "@material-ui/core": "^4.12.4",
+    "@mui/material": "^5.10.1",
     "@types/isotope-layout": "^3.0.9",
     "classnames": "^2.3.1",
     "graphql": "^16.0.1",
@@ -20,7 +22,8 @@
     "react": "^17.0.2",
     "react-bootstrap": "^2.4.0",
     "react-dom": "^17.0.2",
-    "react-waypoint": "^10.3.0"
+    "react-waypoint": "^10.3.0",
+    "tss-react": "^3.7.1"
   },
   "devDependencies": {
     "@jahia/eslint-config": "^1.1.0",
