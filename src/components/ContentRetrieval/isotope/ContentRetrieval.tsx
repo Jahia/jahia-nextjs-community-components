@@ -131,16 +131,16 @@ export const IsotopeContentRetrieval = ({id, referenceComponent, className}: Con
                     <Col lg={12}>
                         <div className={classes.menu}>
                             <div className="text-center">
-                                <button
-                                    type="button"
-                                    className={classnames(
-                                        'btn',
-                                        classes.btn,
-                                        {active: activeClass === '*'})}
-                                    onClick={handleFilterKeyChange('*')}
-                                >All
-                                </button>
-
+                                {filter.length > 1 &&
+                                    <button
+                                        type="button"
+                                        className={classnames(
+                                            'btn',
+                                            classes.btn,
+                                            {active: activeClass === '*'})}
+                                        onClick={handleFilterKeyChange('*')}
+                                    >All
+                                    </button>}
                                 {filter.map(category => (
                                     <MenuBtn key={category.uuid}
                                              id={category.uuid}
