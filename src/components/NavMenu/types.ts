@@ -5,44 +5,14 @@ export enum MenuTypeEnum {
     base = 'base',
     select = 'select'
 }
-export type TreeBaseNodePropsType = {
+export type NavMenuTreePropsType = {
     'j:baseNode': Node,
     'j:includeBaseNode': string,
     'j:maxDepth'?: string,
-    'j:excludePages'?:Node[],
+    'j:excludePages'?:Node[]
 }
 
-export type TreeFromBaseNodeQueryType = {
-    baseNodeId: string,
-    maxDepth?: number,
-    excludePages?:string[],
-    locale:string
+export type NavMenuSetPropsType = {
+    'j:menuNodes':Node[]
 }
 
-export type SubContentQueryProps = {
-    nodeType: string,
-    startNode?:Node,
-    filter?:Node[],
-    maxItems?:string,
-    sortCriteria?:string,
-    sortDirection:string,
-    locale:string
-}
-
-export type MenuBtnIsotopePropsType = ComponentPropsType & {
-    handleClick: (key: string) => () => void,
-    activeClass: string,
-    styles: string
-}
-
-export type SubContentPropsType = {
-    queryProps:SubContentQueryProps
-    referenceComponent: React.ComponentType
-    className?: string
-    subNodesView?: string
-    noResultsMessage?: string
-}
-
-export type SubContentIsotopePropsType = SubContentPropsType & {
-    isotopeId: string
-}
