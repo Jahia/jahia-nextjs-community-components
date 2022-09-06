@@ -1,18 +1,31 @@
-import {ComponentPropsType, Node} from '@jahia/nextjs-sdk';
-import React from 'react';
+import {ComponentPropsType, GqlNode, Node} from '@jahia/nextjs-sdk';
 
-export enum MenuTypeEnum {
-    base = 'base',
-    select = 'select'
-}
-export type NavMenuTreePropsType = {
-    'j:baseNode': Node,
-    'j:includeBaseNode': string,
+// Export enum MenuTypeEnum {
+//     base = 'base',
+//     select = 'select'
+// }
+export type NavMenuPropsType = {
+    'jcr:title'?:string
+    'j:menuType':string
+    'j:baseNode'?: Node,
     'j:maxDepth'?: string,
-    'j:excludePages'?:Node[]
+    'j:excludePages'?:Node[],
+    'j:menuNodes'?:Node[]
 }
 
-export type NavMenuSetPropsType = {
-    'j:menuNodes':Node[]
+// Export type NavMenuTreePropsType = {
+//     'j:baseNode': Node,
+//     'j:includeBaseNode': string,
+//     'j:maxDepth'?: string,
+//     'j:excludePages'?:Node[]
+// }
+
+export type NavMenuTreePropsType = {
+    'baseTreeNode': GqlNode,
+    'excludePages':string[]
 }
+
+// Export type NavMenuSetPropsType = {
+//     'menuNodes':Node[]
+// }
 

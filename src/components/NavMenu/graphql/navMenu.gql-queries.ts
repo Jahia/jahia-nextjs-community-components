@@ -47,10 +47,10 @@ export const getNavMenuTreeQuery = (maxDepth:number) => {
 };
 
 export const navMenuSetQuery = gql`
-        query($workspace: Workspace!,$menuNodesId: String!,$language: String!){
+        query($workspace: Workspace!,$menuNodesId: [String!]!,$language: String!){
             jcr(workspace: $workspace) {
                 workspace
-                nodeById(uuid: $menuNodesId) {
+                nodesById(uuids: $menuNodesId, validInLanguage: $language) {
                     ...CorePageNodeFields
                 }
                
