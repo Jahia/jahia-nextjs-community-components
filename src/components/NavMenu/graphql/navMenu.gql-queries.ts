@@ -7,9 +7,6 @@ type GetChildrenPropsType = {
 }
 
 function getChildren({maxDepth, index}: GetChildrenPropsType):string {
-    console.log('[getChildren] maxDepth:', maxDepth);
-    console.log('[getChildren] index:', index);
-
     if (!maxDepth || maxDepth === index) {
         return '';
     }
@@ -42,7 +39,7 @@ export const getNavMenuTreeQuery = (maxDepth:number) => {
             title: property(name: "jcr:title", language: $language) { value }
         }
     `;
-    console.log('query :', query);
+
     return gql`${query}${CORE_NODE_FIELDS}`;
 };
 
