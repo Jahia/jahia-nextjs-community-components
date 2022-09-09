@@ -1,4 +1,4 @@
-import {JahiaCtx, GqlNode, ComponentPropsType, useNode} from '@jahia/nextjs-sdk';
+import {JahiaCtx, GqlNode, Node, convert, ComponentPropsType, useNode} from '@jahia/nextjs-sdk';
 import {NavMenuTreePropsType, NavMenuPropsType} from './types';
 import {getNavMenuTreeQuery, navMenuSetQuery} from './graphql';
 import React from 'react';
@@ -6,31 +6,29 @@ import {useQuery} from '@apollo/client';
 import {navMenuProperties} from './properties';
 
 const cleanNavMenuTree = ({baseTreeNode, excludePages}:NavMenuTreePropsType) => {
-    const removeExcludedPages = (node:GqlNode) => {
+    const removeExcludedPages = (node:Node) => {
         if (excludePages.includes(node.uuid)) {
             return null;
         }
 
-        if (node.children && node.children.nodes) {
+        if (node.children && node.children.length > 0) {
             return {
                 ...node,
-                children: {
-                    nodes: node.children.nodes.reduce((nodes:GqlNode[], childNode) => {
-                        const validNode = removeExcludedPages(childNode);
-                        if (validNode) {
-                            nodes.push(validNode);
-                        }
+                children: node.children.reduce((nodes:Node[], childNode) => {
+                    const validNode = removeExcludedPages(childNode);
+                    if (validNode) {
+                        nodes.push(validNode);
+                    }
 
-                        return nodes;
-                    }, [])
-                }
+                    return nodes;
+                }, [])
             };
         }
 
         return node;
     };
 
-    return removeExcludedPages(baseTreeNode);
+    return removeExcludedPages(convert(baseTreeNode));
 };
 
 const useNavMenuItems = (props:NavMenuPropsType) => {
@@ -42,7 +40,6 @@ const useNavMenuItems = (props:NavMenuPropsType) => {
     const menuNodes = props['j:menuNodes']?.map(node => node.uuid);
     const excludePages = props['j:excludePages']?.map(node => node.uuid) || [];
     const maxDepth = Number.parseInt(props['j:maxDepth'] as string, 10) || 0;
-    // Const includeBaseNode = props['j:includeBaseNode'] === 'true';
 
     const {data: treeData, error: treeError, loading: treeLoading} = useQuery(getNavMenuTreeQuery(maxDepth), {
         variables: {
