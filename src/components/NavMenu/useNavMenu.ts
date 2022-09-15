@@ -1,4 +1,4 @@
-import {JahiaCtx, GqlNode, Node, convert, ComponentPropsType, useNode} from '@jahia/nextjs-sdk';
+import {JahiaCtx, Node, convert, ComponentPropsType, useNode} from '@jahia/nextjs-sdk';
 import {NavMenuTreePropsType, NavMenuPropsType} from './types';
 import {getNavMenuTreeQuery, navMenuSetQuery} from './graphql';
 import React from 'react';

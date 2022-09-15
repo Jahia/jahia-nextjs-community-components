@@ -295,10 +295,10 @@
     eslint-plugin-react "^7.16.0"
     eslint-plugin-react-hooks "^2.2.0"
 
-"@jahia/nextjs-sdk@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@jahia/nextjs-sdk/-/nextjs-sdk-0.0.3.tgz#24a01452d820dafcf7616eb8a4ef9b1c4956e6a0"
-  integrity sha512-BL5EJ0R28jbSBiU1ji/TnhqKrmeoRZgsnkRnL/+wWE6yFIQX7Uo5xTcKhYg+neEoGIWyi00qGZovlX/9V1Cclw==
+"@jahia/nextjs-sdk@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@jahia/nextjs-sdk/-/nextjs-sdk-0.0.4.tgz#00504197d3d54ee293991d56e2b808079360c68a"
+  integrity sha512-COGun+8Uu0iyj7mF1CbcMmPHpa9khyC+7GEBCJ95/hKhKvvtkwnd/EaTOsc4QFGVLw4X3crqSHg0R2YB53APkA==
   dependencies:
     "@apollo/client" "3.5.9"
     graphql "^16.0.1"
