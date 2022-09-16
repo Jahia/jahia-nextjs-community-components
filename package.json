@@ -3,6 +3,10 @@
   "version": "0.0.6",
   "main": "dist/index",
   "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
   "scripts": {
     "build:lib": "tsc && tsc-alias",
     "lint": "eslint . --ext .ts,.tsx",
