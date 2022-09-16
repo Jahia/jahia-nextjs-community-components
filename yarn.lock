@@ -308,6 +308,18 @@
     react "^17.0.2"
     react-dom "^17.0.2"
 
+"@jahia/nextjs-sdk@file:jahia-nextjs-sdk-v0.0.3.tgz":
+  version "0.0.3"
+  resolved "file:jahia-nextjs-sdk-v0.0.3.tgz#d6589d23895c3fc3befeafd27b68930003b0b8f5"
+  dependencies:
+    "@apollo/client" "3.5.9"
+    graphql "^16.0.1"
+    graphql-tag "^2.12.6"
+    html-react-parser "^3.0.1"
+    next "^12.0.0"
+    react "^17.0.2"
+    react-dom "^17.0.2"
+
 "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/@jridgewell/gen-mapping/-/gen-mapping-0.3.2.tgz#c1aedc61e853f2bb9f5dfe6d4442d3b565b253b9"

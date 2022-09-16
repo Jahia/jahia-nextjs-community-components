@@ -103,7 +103,7 @@ export const IsotopeContentRetrieval = ({id, referenceComponent, className}: Con
 
     if (error) {
         console.error(error);
-        return <div>Error when loading ${JSON.stringify(error)}</div>;
+        return <div>[IsotopeContentRetrieval] Error when loading ${JSON.stringify(error)}</div>;
     }
 
     if (!data || !data.properties) {
