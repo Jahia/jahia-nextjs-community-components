@@ -17,6 +17,8 @@ jobs:
         with:
           ssh-key: ${{ secrets.GH_SSH_PRIVATE_KEY_JAHIACI }}
       - uses: actions/setup-node@v3
+        with:
+          registry-url: 'https://registry.npmjs.org/'
       # Setting up the SSH agent to be able to commit back to the repository
       # https://github.com/webfactory/ssh-agent
       - uses: webfactory/ssh-agent@v0.5.4
