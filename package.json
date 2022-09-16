@@ -5,7 +5,10 @@
   "license": "MIT",
   "scripts": {
     "build:lib": "tsc && tsc-alias",
-    "lint": "eslint . --ext .ts,.tsx"
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "build": "yarn lint:fix && yarn build:lib",
+    "release": "auto shipit"
   },
   "dependencies": {
     "@apollo/client": "3.5.9",
