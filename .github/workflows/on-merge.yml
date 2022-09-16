@@ -42,6 +42,10 @@ jobs:
           git fetch --tags
           yarn release
 
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        if: ${{ failure() }}
+
       - name: Merge changes back into develop branch
         shell: bash
         run: |
