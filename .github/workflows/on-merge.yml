@@ -48,6 +48,5 @@ jobs:
         shell: bash
         run: |
           git checkout develop
-          git pull --rebase
-          git merge main --ff-only --allow-unrelated-histories
+          git merge main --ff-only 
           git push -u origin develop
