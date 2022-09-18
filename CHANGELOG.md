@@ -1,3 +1,15 @@
+# v0.0.10 (Sun Sep 18 2022)
+
+#### ⚠️ Pushed to `main`
+
+- Pull ([@Fgerthoffert](https://github.com/Fgerthoffert))
+
+#### Authors: 1
+
+- Francois G. ([@Fgerthoffert](https://github.com/Fgerthoffert))
+
+---
+
 # v0.0.9 (Sun Sep 18 2022)
 
 #### ⚠️ Pushed to `main`
