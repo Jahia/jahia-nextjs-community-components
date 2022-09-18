@@ -1,3 +1,15 @@
+# v0.0.11 (Sun Sep 18 2022)
+
+#### ⚠️ Pushed to `main`
+
+- Revert ([@Fgerthoffert](https://github.com/Fgerthoffert))
+
+#### Authors: 1
+
+- Francois G. ([@Fgerthoffert](https://github.com/Fgerthoffert))
+
+---
+
 # v0.0.10 (Sun Sep 18 2022)
 
 #### ⚠️ Pushed to `main`
