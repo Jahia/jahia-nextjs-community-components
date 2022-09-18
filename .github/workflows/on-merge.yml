@@ -48,5 +48,5 @@ jobs:
         shell: bash
         run: |
           git checkout develop
-          git merge main --ff-only
+          git merge main --ff-only --allow-unrelated-histories
           git push -u origin develop
