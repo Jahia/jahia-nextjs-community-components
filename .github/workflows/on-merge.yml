@@ -40,7 +40,7 @@ jobs:
         shell: bash
         run: |
           git fetch --tags
-          yarn release
+          yarn release --access public
 
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
