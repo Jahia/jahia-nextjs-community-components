@@ -1,3 +1,15 @@
+# v0.0.12 (Mon Sep 19 2022)
+
+#### ⚠️ Pushed to `main`
+
+- Test ([@tdraier](https://github.com/tdraier))
+
+#### Authors: 1
+
+- Thomas Draier ([@tdraier](https://github.com/tdraier))
+
+---
+
 # v0.0.11 (Sun Sep 18 2022)
 
 #### ⚠️ Pushed to `main`
