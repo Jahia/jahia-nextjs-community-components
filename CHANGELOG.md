@@ -1,3 +1,15 @@
+# v0.0.13 (Mon Sep 19 2022)
+
+#### ⚠️ Pushed to `main`
+
+- update sdk lib version ([@hduchesne](https://github.com/hduchesne))
+
+#### Authors: 1
+
+- Hervé Duchesne ([@hduchesne](https://github.com/hduchesne))
+
+---
+
 # v0.0.12 (Mon Sep 19 2022)
 
 #### ⚠️ Pushed to `main`
