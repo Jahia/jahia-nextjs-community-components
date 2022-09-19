@@ -81,4 +81,3 @@ The function returns also for each node, including the base node, the **core** p
 [archi.md]: https://github.com/Jahia/jahia-nextjs-initiative/blob/main/doc/architecture.md
 [nextjs-industrial]:https://github.com/Jahia/nextjs-industrial
 [api-templates]:https://github.com/Jahia/nextjs-industrial/blob/main/pages/api/jahia/templates.js
-
